@@ -73,4 +73,14 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* for focus problem in mobiles screen */
+  input {
+    @apply text-[27px] lg:text-[14px] !important;
+  }
+}
+
+@layer utilities {
+  .title {
+    @apply text-2xl py-2 font-bold;
+  }
 }
