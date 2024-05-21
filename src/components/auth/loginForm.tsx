@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { loginValidation } from "@/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { login } from "@/actions/auth";
+import { loginAction } from "@/actions/auth";
 import {
   Form,
   FormItem,
@@ -31,7 +31,7 @@ const LoginForm: React.FC = () => {
     email,
     password,
   }: z.infer<typeof loginValidation>) {
-    await login(email, password);
+    await loginAction(email, password);
   }
 
   return (
@@ -48,7 +48,7 @@ const LoginForm: React.FC = () => {
             <FormItem>
               <FormLabel>Email:</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} autoComplete="email" type="email" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -61,7 +61,11 @@ const LoginForm: React.FC = () => {
             <FormItem>
               <FormLabel>Password:</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  type="password"
+                  autoComplete="current-password"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

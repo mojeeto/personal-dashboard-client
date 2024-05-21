@@ -15,6 +15,7 @@ import {
   FormField,
   FormLabel,
 } from "../ui/form";
+import { signupAction } from "@/actions/auth";
 
 const SignupForm: React.FC = () => {
   const form = useForm<z.infer<typeof signUpValidation>>({
@@ -33,7 +34,9 @@ const SignupForm: React.FC = () => {
     surname,
     email,
     password,
-  }: z.infer<typeof signUpValidation>) {}
+  }: z.infer<typeof signUpValidation>) {
+    await signupAction(forename, surname, email, password);
+  }
 
   return (
     <Form {...form}>
@@ -75,7 +78,7 @@ const SignupForm: React.FC = () => {
             <FormItem>
               <FormLabel>Email:</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} autoComplete="email" type="email" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -88,7 +91,11 @@ const SignupForm: React.FC = () => {
             <FormItem>
               <FormLabel>Password:</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  autoComplete="current-password"
+                  type="password"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
