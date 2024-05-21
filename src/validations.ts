@@ -1,17 +1,10 @@
 import { z } from "zod";
 
-export const emailValidation = z
+export const loginValidation = z
   .object({
     email: z.string().email({
       message: "Please enter valid email!.",
     }),
-  })
-  .required({
-    email: true,
-  });
-
-export const passwordValidation = z
-  .object({
     password: z
       .string()
       .trim()
@@ -19,14 +12,16 @@ export const passwordValidation = z
       .max(20, "Password Valid Lenght is between 5 and 20."),
   })
   .required({
+    email: true,
     password: true,
   });
 
-export const forenameSurnameValidation = z
+export const signUpValidation = z
   .object({
     forename: z.string().min(4, "Forename is required!").trim(),
     surname: z.string().trim(),
   })
   .required({
     forename: true,
-  });
+  })
+  .merge(loginValidation);
