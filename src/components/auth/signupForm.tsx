@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { signUpValidation } from "@/validations";
+import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../ui/button";
@@ -25,6 +26,7 @@ const SignupForm: React.FC = () => {
       password: "",
     },
   });
+  const router = useRouter();
 
   async function onSubmit({
     forename,
@@ -92,7 +94,14 @@ const SignupForm: React.FC = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Login</Button>
+        <Button type="submit">Register!</Button>
+        <Button
+          type="button"
+          onClick={() => router.replace("/login")}
+          variant={"link"}
+        >
+          Login with Email.
+        </Button>
       </form>
     </Form>
   );

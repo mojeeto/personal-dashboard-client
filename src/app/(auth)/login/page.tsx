@@ -1,10 +1,12 @@
 import AuthForm from "@/components/auth/authForm";
+import Box from "@/components/box";
 
 export default function LoginPage() {
   return (
     <main>
-      <h1 className="text-xl">Login Form</h1>
-      <AuthForm />
+      <Box title="Login" className="mx-auto mt-20">
+        <AuthForm />
+      </Box>
     </main>
   );
 }

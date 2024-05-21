@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const LoginForm: React.FC = () => {
   const form = useForm<z.infer<typeof loginValidation>>({
@@ -24,6 +25,7 @@ const LoginForm: React.FC = () => {
       password: "",
     },
   });
+  const router = useRouter();
 
   async function onSubmit({
     email,
@@ -66,6 +68,13 @@ const LoginForm: React.FC = () => {
           )}
         />
         <Button type="submit">Login</Button>
+        <Button
+          type="button"
+          onClick={() => router.replace("/signup")}
+          variant={"link"}
+        >
+          Create new Account.
+        </Button>
       </form>
     </Form>
   );

@@ -1,9 +1,12 @@
 import AuthForm from "@/components/auth/authForm";
+import Box from "@/components/box";
 
 export default function SignUpPage() {
   return (
-    <div>
-      <AuthForm mode="register" />
-    </div>
+    <main>
+      <Box title="Register new Account" className="mx-auto mt-20">
+        <AuthForm mode="register" />
+      </Box>
+    </main>
   );
 }
