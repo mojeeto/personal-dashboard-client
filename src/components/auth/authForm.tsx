@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { Fragment } from "react";
 import Link from "next/link";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -45,8 +46,12 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode = "login" }) => {
   }
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         {fields!.map((name) => {
+          // for ignore forename and surname input in login page
+          if (mode === "login" && ["forename", "surname"].includes(name)) {
+            return <Fragment key={name}></Fragment>;
+          }
           return (
             <FormField
               control={form.control}
