@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body
         className={cn(
-          `dark:bg-stone-900 dark:text-gray-200`,
+          `min-h-screen bg-background font-sans antialiased`,
           fontSans.variable,
         )}
       >
