@@ -10,5 +10,18 @@ export async function signupAction(
   email: string,
   password: string,
 ) {
-  console.log(forename, surname, email, password);
+  const request = await fetch("http://localhost:8080/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      forename,
+      surname,
+      email,
+      password,
+    }),
+  });
+
+  return await request.json();
 }
