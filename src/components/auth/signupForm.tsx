@@ -40,9 +40,11 @@ const SignupForm: React.FC = () => {
 
     if (response.statusCode !== 201) {
       toast.error(response.message);
+      router.replace("/login");
       return;
     }
     toast.success(response.message);
+    router.replace("/login");
   }
 
   return (
