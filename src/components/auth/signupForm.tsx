@@ -16,6 +16,7 @@ import {
   FormLabel,
 } from "../ui/form";
 import { signupAction } from "@/actions/auth";
+import { toast } from "sonner";
 
 const SignupForm: React.FC = () => {
   const form = useForm<z.infer<typeof signUpValidation>>({
@@ -35,7 +36,13 @@ const SignupForm: React.FC = () => {
     email,
     password,
   }: z.infer<typeof signUpValidation>) {
-    await signupAction(forename, surname, email, password);
+    const response = await signupAction(forename, surname, email, password);
+
+    if (response.statusCode !== 201) {
+      toast.error(response.message);
+      return;
+    }
+    toast.success(response.message);
   }
 
   return (
