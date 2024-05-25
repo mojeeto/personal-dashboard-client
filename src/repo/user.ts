@@ -5,6 +5,6 @@ export function createUser(email: string) {
     .lastInsertRowid;
 }
 
-export function getUserByEmail(email: string) {
+export function getUserByEmail(email: string): UserType {
   return db.prepare("SELECT * FROM users WHERE email = ?").get(email);
 }

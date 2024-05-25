@@ -1,7 +1,7 @@
 "use server";
 
 import { createAuthSession } from "@/lib/auth";
-import { createUser } from "@/repo/user";
+import { createUser, getUserByEmail } from "@/repo/user";
 import { redirect } from "next/navigation";
 
 const API_URL = process.env.API_URL!;
@@ -24,9 +24,10 @@ export async function loginAction(email: string, password: string) {
     };
   }
 
-  const newUserId = createUser(email);
+  let userId = getUserByEmail(email)?.id.toString();
+  if (!userId) userId = createUser(email).toString();
 
-  createAuthSession(newUserId.toString(), response.data.jwt_token);
+  createAuthSession(userId, response.data.jwt_token);
 }
 
 export async function signupAction(

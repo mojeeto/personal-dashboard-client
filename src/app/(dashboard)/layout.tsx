@@ -1,4 +1,5 @@
 import { isAuthenticate } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 export default async function RootLayout({
   children,
@@ -6,6 +7,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const isAuth = await isAuthenticate();
-  console.log(isAuth);
+  if (!isAuth.jwt_token) redirect("/login");
   return <>{children}</>;
 }

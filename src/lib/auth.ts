@@ -20,10 +20,17 @@ const lucia = new Lucia(adapter, {
 });
 
 export async function createAuthSession(userId: string, jwtToken: string) {
-  const session = await lucia.createSession(userId, {});
+  const userSessions = await lucia.getUserSessions(userId);
+  let session;
+  if (userSessions.length === 0)
+    session = await lucia.createSession(userId, {});
+  else session = userSessions[0];
   const sessionCookie = lucia.createSessionCookie(session.id);
   try {
-    addToken(jwtToken, sessionCookie.value, sessionCookie.attributes.maxAge);
+    const token = getToken(session.id);
+    if (!token) {
+      addToken(jwtToken, sessionCookie.value, sessionCookie.attributes.maxAge);
+    }
     cookies().set(
       sessionCookie.name,
       sessionCookie.value,
