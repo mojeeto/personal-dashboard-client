@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const LoginForm: React.FC = () => {
   const form = useForm<z.infer<typeof loginValidation>>({
@@ -31,7 +32,10 @@ const LoginForm: React.FC = () => {
     email,
     password,
   }: z.infer<typeof loginValidation>) {
-    await loginAction(email, password);
+    const error = await loginAction(email, password);
+    if (error) {
+      toast.error(error.message || "Login Failed!");
+    }
   }
 
   return (
