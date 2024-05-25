@@ -19,6 +19,9 @@ const lucia = new Lucia(adapter, {
   },
 });
 
+// TODO::Search about cookies and learn more about that
+// how to secure them and protect them about copy cookie in other browsers
+
 export async function createAuthSession(userId: string, jwtToken: string) {
   const userSessions = await lucia.getUserSessions(userId);
   let session;
