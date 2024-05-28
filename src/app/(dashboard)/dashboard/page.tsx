@@ -6,6 +6,9 @@ export default async function Home() {
     <main>
       <ul className="p-5">
         <li>
+          <Link href="/contacts">Contacts Page</Link>
+        </li>
+        <li>
           <Link href="/wallet">Wallet Page</Link>
         </li>
       </ul>
