@@ -32,7 +32,7 @@ export async function createAuthSession(userId: string, jwtToken: string) {
   try {
     const token = getToken(session.id);
     if (!token) {
-      addToken(jwtToken, sessionCookie.value, sessionCookie.attributes.maxAge);
+      addToken(jwtToken, sessionCookie.value, sessionCookie.attributes.maxAge!);
     }
     cookies().set(
       sessionCookie.name,
@@ -54,6 +54,6 @@ export const isAuthenticate = cache(async () => {
     };
   const sessionId = sessionCookie.value;
   const { user, session } = await lucia.validateSession(sessionId);
-  const { jwt_token } = getToken(sessionId);
+  const { jwt_token } = getToken(sessionId) as { jwt_token: string };
   return { user, session, jwt_token };
 });
