@@ -1,19 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { DialogFooter, DialogClose } from "@/components/ui/dialog";
 
-const WalletRecordDialogFooter: React.FC = () => {
+const DialogTwoButtonFooter: React.FC<{
+  primaryButtonText: string;
+  cancelButtonText?: string;
+}> = ({ primaryButtonText, cancelButtonText = "Cancel" }) => {
   return (
     <DialogFooter className="sm:justify-start">
       <DialogClose asChild>
-        <Button type="button">Add Record</Button>
+        <Button type="button">{primaryButtonText}</Button>
       </DialogClose>
       <DialogClose asChild>
         <Button type="button" variant="destructive">
-          Cancel
+          {cancelButtonText}
         </Button>
       </DialogClose>
     </DialogFooter>
   );
 };
 
-export default WalletRecordDialogFooter;
+export default DialogTwoButtonFooter;

@@ -1,17 +1,20 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import WalletRecordDialogButton from "./wallet-record-dialog-button";
-import WalletRecordDialogHeader from "./wallet-record-dialog-header";
 import WalletRecordDialogContent from "./wallet-record-dialog-content";
-import WalletRecordDialogFooter from "./wallet-record-dialog-footer";
+import CustomDialogHeader from "@/components/dialog/dialog-header";
+import DialogTwoButtonFooter from "@/components/dialog/dialog-two-button-footer";
+import DialogTrigger from "@/components/dialog/dialog-trigger-button";
 
 const WalletRecordDialog: React.FC = () => {
   return (
     <Dialog>
-      <WalletRecordDialogButton />
+      <DialogTrigger />
       <DialogContent>
-        <WalletRecordDialogHeader />
+        <CustomDialogHeader
+          title="Record Dialog"
+          description="Some Description"
+        />
         <WalletRecordDialogContent />
-        <WalletRecordDialogFooter />
+        <DialogTwoButtonFooter primaryButtonText="Add Record" />
       </DialogContent>
     </Dialog>
   );
