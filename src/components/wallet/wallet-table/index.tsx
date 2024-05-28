@@ -6,12 +6,11 @@ const WalletTable: React.FC = () => {
   const tableHeader = [
     "Record Id",
     "Title",
-    "Record Type",
     "Price",
     "From",
     "Time",
-    "Category",
     "For",
+    "Options",
   ];
   return (
     <Table>
