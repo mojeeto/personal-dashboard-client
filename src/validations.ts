@@ -25,3 +25,21 @@ export const signUpValidation = z
     forename: true,
   })
   .merge(loginValidation);
+
+export const contactZodObject = z
+  .object({
+    name: z.string({
+      required_error: "Name for contact is required!",
+    }),
+    phoneNumber: z
+      .string()
+      .trim()
+      .length(11, "PhoneNumber must be 11 length and starts with 0."),
+    bankCartNumber: z
+      .string()
+      .length(16, "Bank Number must contain exactly 19 character(s)"),
+  })
+  .partial({
+    phoneNumber: true,
+    bankCartNumber: true,
+  });
