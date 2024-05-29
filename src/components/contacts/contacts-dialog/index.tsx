@@ -1,7 +1,7 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import DialogTrigger from "@/components/dialog/dialog-trigger-button";
 import CustomDialogHeader from "@/components/dialog/dialog-header";
-import DialogTwoButtonFooter from "@/components/dialog/dialog-two-button-footer";
+import ContactDialogContent from "./contact-dialog-form";
 
 export default function ContactsDialog() {
   return (
@@ -10,12 +10,9 @@ export default function ContactsDialog() {
       <DialogContent>
         <CustomDialogHeader
           title="Create Contact"
-          description="Example Description"
+          description="Create new contact Dialog."
         />
-        <div>
-          <form>Example form</form>
-        </div>
-        <DialogTwoButtonFooter primaryButtonText="Create Contact" />
+        <ContactDialogContent />
       </DialogContent>
     </Dialog>
   );

@@ -1,5 +1,3 @@
-import PlusIcon from "@/components/icons/plusIcon";
-import { Button } from "@/components/ui/button";
 import WalletTable from "@/components/wallet/wallet-table";
 import WalletRecordDialog from "@/components/wallet/wallet-record-dialog";
 
