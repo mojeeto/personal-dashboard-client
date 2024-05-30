@@ -14,10 +14,12 @@ import { Input } from "@/components/ui/input";
 import { contactZodObject } from "@/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { postContact } from "@/actions/contacts";
+import { toast } from "sonner";
 
 export default function ContactDialogContent() {
   const form = useForm<z.infer<typeof contactZodObject>>({
-    resolver: zodResolver(contactZodObject),
+    resolver: zodResolver(contactZodObject.partial()),
     defaultValues: {
       name: "",
       phoneNumber: "",
@@ -30,7 +32,16 @@ export default function ContactDialogContent() {
     phoneNumber,
     bankCartNumber,
   }: z.infer<typeof contactZodObject>) {
-    console.log(name, phoneNumber, bankCartNumber);
+    const { statusCode, message } = await postContact(
+      name,
+      phoneNumber || "",
+      bankCartNumber || "",
+    );
+    if (statusCode !== 201) {
+      toast.error(message);
+      return;
+    }
+    toast.success(message);
   }
 
   return (

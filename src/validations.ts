@@ -34,10 +34,12 @@ export const contactZodObject = z
     phoneNumber: z
       .string()
       .trim()
-      .length(11, "PhoneNumber must be 11 length and starts with 0."),
-    bankCartNumber: z
-      .string()
-      .length(16, "Bank Number must contain exactly 19 character(s)"),
+      .refine((arg) => {
+        if ([0, 11].includes(arg.length)) return true;
+      }, "PhoneNumber must be 11 length and starts with 0."),
+    bankCartNumber: z.string().refine((arg) => {
+      if ([0, 16].includes(arg.length)) return true;
+    }, "Bank Number must contain exactly 19 character(s)"),
   })
   .partial({
     phoneNumber: true,

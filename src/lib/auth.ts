@@ -47,13 +47,16 @@ export async function createAuthSession(userId: string, jwtToken: string) {
 
 export const isAuthenticate = cache(async () => {
   const sessionCookie = cookies().get(lucia.sessionCookieName);
-  if (!sessionCookie || !sessionCookie.value)
-    return {
-      user: null,
-      session: null,
-    };
+  if (!sessionCookie || !sessionCookie.value) return false;
   const sessionId = sessionCookie.value;
   const { user, session } = await lucia.validateSession(sessionId);
+  if (!user || !session) return false;
   const { jwt_token } = getToken(sessionId) as { jwt_token: string };
-  return { user, session, jwt_token };
+  if (!jwt_token) return false;
+  return jwt_token;
+});
+
+export const getJWTToken = cache(async () => {
+  const token = await isAuthenticate();
+  return token ? token : "";
 });

@@ -7,6 +7,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const isAuth = await isAuthenticate();
-  if (!isAuth.jwt_token) redirect("/login");
+  if (!isAuth) redirect("/login");
   return <>{children}</>;
 }

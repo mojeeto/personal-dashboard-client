@@ -28,6 +28,7 @@ export async function loginAction(email: string, password: string) {
   if (!userId) userId = createUser(email).toString();
 
   createAuthSession(userId, response.data.jwt_token);
+  redirect("/dashboard");
 }
 
 export async function signupAction(
